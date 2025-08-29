@@ -52,36 +52,51 @@ The program:
 #include "Helix.h"
 #include "CurveParams.h"
 
+// Generating a random curve
+std::shared_ptr<Curve3D> generateRandomCurve(std::mt19937& gen, const CurveParams& params)
+{
+	std::uniform_int_distribution<int> typeDist(0, 2);
+	CurveType type = static_cast<CurveType>(typeDist(gen));
+
+	switch (type) {
+	case CurveType::Circle:
+		return std::make_shared<Circle>(safeRandom(gen, params.rangeR));
+	case CurveType::Ellipse:
+		return std::make_shared<Ellipse>(safeRandom(gen, params.rangeA),
+			safeRandom(gen, params.rangeB));
+	case CurveType::Helix:
+		return std::make_shared<Helix>(safeRandom(gen, params.rangeR),
+			safeRandom(gen, params.rangeC));
+	}
+	return nullptr;
+}
+
+// Generate a curve container
+std::vector<std::shared_ptr<Curve3D>> generateCurves(size_t N, std::mt19937& gen, const CurveParams& params)
+{
+	std::vector<std::shared_ptr<Curve3D>> curves;
+	curves.reserve(N);
+
+	while (curves.size() < N) {
+		try {
+			curves.push_back(generateRandomCurve(gen, params));
+		}
+		catch (const std::invalid_argument& e) {
+			std::cerr << e.what() << "\n\n";
+			break;
+		}
+	}
+
+	return curves;
+}
+
 int main() {
 
 	std::random_device rd;
 	std::mt19937 gen(rd());
 
-	CurveParams good_params;
-	//CurveParams bad_params{ {-2.0, 2.0}, {-2.0, 2.0}, {-2.0, 2.0} };
-	
-	double t = M_PI / 4;
-
-	auto curves = generateCurves(10, gen, good_params);
-	printCurvesInfo(curves, t);
-
-	/*auto curves2 = generateCurves(10, gen, bad_params);
-	printCurvesInfo(curves2, t);*/
-
-	auto circles = extractCircles(curves);
-
-	std::sort(begin(circles), end(circles),
-		[](const std::shared_ptr<Circle>& a, const std::shared_ptr<Circle>& b) {
-			return a->getR() < b->getR(); });
-	
-	double totalRadius = sumRadii(circles);
-	
-	for (size_t i = 0; i < circles.size(); ++i) {
-		std::cout << "Circle" << i + 1 << ": r = " <<
-			circles[i]->getR() << std::endl;
-	}
-
-	std::cout << "Total sum of radii: " << totalRadius << std::endl;
+	CurveParams params;
+	auto curves = generateCurves(10, gen, params);
 
 	return 0;
 }
