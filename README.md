@@ -14,7 +14,7 @@ It consists of a dynamic library (`curveslib`) and a console application (`curve
 ### Steps
 1. Clone the repository
 ```bash
-git clone https://github.com/username/3DCurvesImp.git
+git clone https://github.com/KrashenDima/3DCurvesImp.git
 cd 3DCurvesImp
 ```
 
@@ -35,7 +35,8 @@ After building, you will get:
 ## ▶️ Run
 Example of running the application:
 ```bash
-./build/Release/curvesapp.exe
+cd build\app\Release
+curvesapp.exe
 ```
 
 The program:
