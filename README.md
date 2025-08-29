@@ -1,50 +1,50 @@
 # 3DCurvesImp
 
-Проект на C++, реализующий работу с 3D-кривыми: **окружность, эллипс и спираль (helix)**.  
-Состоит из динамической библиотеки (`curveslib`) и консольного приложения (`curves_app`), которое демонстрирует её использование.
+A C++ project that implements 3D curves: **circle, ellipse, and helix**.  
+It consists of a dynamic library (`curveslib`) and a console application (`curves_app`) that demonstrates its usage.
 
 ---
 
-## ⚙️ Сборка
+## ⚙️ Build Instructions
 
-### Требования
+### Requirements
 - **CMake 3.15+**
-- Компилятор C++17 (Visual Studio, GCC, Clang)
+- C++17 compatible compiler (Visual Studio, GCC, Clang)
 
-### Шаги
-# 1. Клонируем репозиторий
+### Steps
+# 1. Clone the repository
 ```bash
 git clone https://github.com/username/3DCurvesImp.git
 cd 3DCurvesImp
 ```
 
-# 2. Генерация сборочной системы
+# 2. Generate build system
 ```bash
 cmake -S . -B build
 ```
 
-# 3. Сборка
+# 3. Build
 ```bash
 cmake --build build --config Release
 ```
 
-После сборки будут получены:
-build/Release/curveslib.dll (Windows) или libcurveslib.so (Linux)
-build/Release/curves_app.exe — консольное приложение
+After building, you will get:
+`build/Release/curveslib.dll (Windows)` or `libcurveslib.so (Linux)`
+`build/Release/curves_app.exe` — console application
 
-## ▶️ Запуск
-Пример запуска приложения:
+## ▶️ Run
+Example of running the application:
 ```bash
 ./build/Release/curves_app
 ```
 
-Программа:
-1. Генерирует случайные кривые (окружности, эллипсы, спирали).
-2. Выводит координаты точек и производных в заданной точке t.
-3. Отбирает все окружности, сортирует их по радиусам.
-4. Параллельно суммирует радиусы окружностей с помощью OpenMP.
+The program:
+1. Generates random curves (circles, ellipses, helices).
+2. Prints coordinates of points and derivatives at a given parameter `t`.
+3. Extracts all circles and sorts them by radius.
+4. Computes the total sum of circle radii in parallel using OpenMP.
 
-## 📚 Пример кода (main.cpp)
+## 📚 Example Code (main.cpp)
 ```cpp
 #include "Curve3D.h"
 #include "Circle.h"
