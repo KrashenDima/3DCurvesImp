@@ -1,7 +1,7 @@
 # 3DCurvesImp
 
 A C++ project that implements 3D curves: **circle, ellipse, and helix**.  
-It consists of a dynamic library (`curveslib`) and a console application (`curves_app`) that demonstrates its usage.
+It consists of a dynamic library (`curveslib`) and a console application (`curvesapp`) that demonstrates its usage.
 
 ---
 
@@ -30,17 +30,17 @@ cmake --build build --config Release
 
 After building, you will get:
 `build/Release/curveslib.dll (Windows)` or `libcurveslib.so (Linux)`
-`build/Release/curves_app.exe` — console application
+`build/Release/curvesapp.exe` — console application
 
 ## ▶️ Run
 Example of running the application:
 ```bash
-./build/Release/curves_app
+./build/Release/curvesapp.exe
 ```
 
 The program:
-1. Generates random curves (circles, ellipses, helices).
-2. Prints coordinates of points and derivatives at a given parameter `t`.
+1. Generates `10` random curves (circles, ellipses, helices).
+2. Prints coordinates of points and derivatives at a given parameter `t=PI/4`.
 3. Extracts all circles and sorts them by radius.
 4. Computes the total sum of circle radii in parallel using OpenMP.
 
