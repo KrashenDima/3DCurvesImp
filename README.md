@@ -12,18 +12,18 @@ It consists of a dynamic library (`curveslib`) and a console application (`curve
 - C++17 compatible compiler (Visual Studio, GCC, Clang)
 
 ### Steps
-# 1. Clone the repository
+1. Clone the repository
 ```bash
 git clone https://github.com/username/3DCurvesImp.git
 cd 3DCurvesImp
 ```
 
-# 2. Generate build system
+2. Generate build system
 ```bash
 cmake -S . -B build
 ```
 
-# 3. Build
+3. Build
 ```bash
 cmake --build build --config Release
 ```
