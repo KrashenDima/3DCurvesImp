@@ -12,15 +12,19 @@
 - Компилятор C++17 (Visual Studio, GCC, Clang)
 
 ### Шаги
-```yaml
 # 1. Клонируем репозиторий
+```bash
 git clone https://github.com/username/3DCurvesImp.git
 cd 3DCurvesImp
+```
 
 # 2. Генерация сборочной системы
+```bash
 cmake -S . -B build
+```
 
 # 3. Сборка
+```bash
 cmake --build build --config Release
 ```
 
