@@ -12,7 +12,7 @@
 - Компилятор C++17 (Visual Studio, GCC, Clang)
 
 ### Шаги
-
+```yaml
 # 1. Клонируем репозиторий
 git clone https://github.com/username/3DCurvesImp.git
 cd 3DCurvesImp
@@ -22,10 +22,10 @@ cmake -S . -B build
 
 # 3. Сборка
 cmake --build build --config Release
+```
+
 После сборки будут получены:
-
 build/Release/curveslib.dll (Windows) или libcurveslib.so (Linux)
-
 build/Release/curves_app.exe — консольное приложение
 
 ## ▶️ Запуск
