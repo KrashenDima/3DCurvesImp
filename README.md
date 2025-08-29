@@ -53,20 +53,36 @@ The program:
 #include "CurveParams.h"
 
 int main() {
-    std::random_device rd;
-    std::mt19937 gen(rd());
 
-    CurveParams params;
-    double t = M_PI / 4;
+	std::random_device rd;
+	std::mt19937 gen(rd());
 
-    auto curves = generateCurves(10, gen, params);
-    printCurvesInfo(curves, t);
+	CurveParams good_params;
+	//CurveParams bad_params{ {-2.0, 2.0}, {-2.0, 2.0}, {-2.0, 2.0} };
+	
+	double t = M_PI / 4;
 
-    auto circles = extractCircles(curves);
-    std::sort(circles.begin(), circles.end(),
-        [](auto& a, auto& b) { return a->getR() < b->getR(); });
+	auto curves = generateCurves(10, gen, good_params);
+	printCurvesInfo(curves, t);
 
-    double totalRadius = sumRadii(circles);
-    std::cout << "Total radii sum = " << totalRadius << std::endl;
+	/*auto curves2 = generateCurves(10, gen, bad_params);
+	printCurvesInfo(curves2, t);*/
+
+	auto circles = extractCircles(curves);
+
+	std::sort(begin(circles), end(circles),
+		[](const std::shared_ptr<Circle>& a, const std::shared_ptr<Circle>& b) {
+			return a->getR() < b->getR(); });
+	
+	double totalRadius = sumRadii(circles);
+	
+	for (size_t i = 0; i < circles.size(); ++i) {
+		std::cout << "Circle" << i + 1 << ": r = " <<
+			circles[i]->getR() << std::endl;
+	}
+
+	std::cout << "Total sum of radii: " << totalRadius << std::endl;
+
+	return 0;
 }
 ```
